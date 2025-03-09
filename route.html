@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>路線ルーレット</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #line {
+            font-size: 24px;
+            margin: 20px;
+            font-weight: bold;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #roulette {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>路線ルーレット</h1>
+    <p id="line">タップしてルーレット開始！</p>
+    <button id="roulette">ルーレット開始</button>
+
+    <script>
+        const lines = [
+            "東海道線", "中央本線", "京浜東北線", "常磐線", "野岩鉄道会津鬼怒川線", "総武本線", "南武線", "横浜線", "武蔵野線", "京葉線", "八高線", "高崎線", "鹿島線", "両毛線", "水戸線", "東京地下鉄東西線", "東京地下鉄有楽町線", "都営地下鉄新宿線", "京王相模原線", "東急東横線", "東急田園都市線", "京急本線", "小田急小田原線", "小田急多摩線", "西武池袋線", "西武新宿線", "西武山口線", "東武伊勢崎線", "東武日光線", "東武野田線", "東武東上本線", "京成本線", "京成成田空港線", "埼玉高速鉄道線", "北総鉄道北総線", "つくばエクスプレス", "青梅線", "五日市線 ", "西武拝島線", "西武多摩湖線", "西武国分寺線", "西武西武園線", "西武多摩川線 ", "多摩都市モノレール線 ", "山手線", "京王新線", "京成押上線", "東急目黒線", "東急池上線", "東京メトロ銀座線", "東京メトロ丸ノ内線", "東京メトロ日比谷線", "東京メトロ千代田線", "東京メトロ半蔵門線", "東京メトロ南北線", "都営地下鉄浅草線", "都営地下鉄三田線", "都営地下鉄大江戸線", "日暮里・舎人ライナー", "都電荒川線", "東京モノレール羽田空港線", "東京臨海高速鉄道りんかい線", "ゆりかもめ東京臨海新交通臨海線", "京急空港線", "東急多摩川線", "東急世田谷線", "西武豊島線", "西武有楽町線", "京成金町線", "東武大師線", "京王競馬場線", "京王動物園線", "京王高尾線", "西武西武園線", "根岸線", "鶴見線", "相模線", "小田急江ノ島線", "京急線", "相鉄本線", "小田急箱根鉄道線", "伊豆箱根鉄道大雄山線", "江ノ島電鉄", "湘南モノレール江の島線", "横浜市営地下鉄ブルーライン", "横浜高速鉄道こどもの国線", "金沢シーサイドライン", "横浜市営地下鉄グリーンライン", "京急大師線", "内房線", "外房線", "久留里線", "東金線", "成田線", "京成千葉線", "京成千原線", "新京成電鉄新京成線", "いすみ鉄道いすみ線", "小湊鉄道線", "芝山鉄道線", "東葉高速線", "流鉄流山線", "千葉都市モノレール1号線", "山万ユーカリが丘線", "銚子電気鉄道線", "舞浜リゾートラインディズニーリゾートライン", "京成東成田線", "川越線", "東武越生線", "秩父鉄道秩父本線", "西武狭山線", "西武秩父線", "埼玉新都市交通伊奈線"
+        ];
+
+        let isRunning = false; // ルーレットの状態（動作中 or 停止）
+        let interval = null;   // setInterval用の変数
+
+        document.getElementById("roulette").addEventListener("click", function() {
+            let lineElement = document.getElementById("line");
+
+            if (!isRunning) {
+                // ルーレット開始
+                isRunning = true;
+                this.textContent = "ストップ";
+                interval = setInterval(() => {
+                    let randomIndex = Math.floor(Math.random() * lines.length);
+                    lineElement.textContent = lines[randomIndex];
+                }, 25);
+            } else {
+                // ルーレット停止
+                isRunning = false;
+                this.textContent = "ルーレット開始";
+                clearInterval(interval);
+            }
+        });
+    </script>
+</body>
+</html>
